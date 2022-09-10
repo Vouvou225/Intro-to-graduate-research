@@ -1,1 +1,5 @@
-
+summary of A cluster analysis of basketball players for each of the five traditionally defined positions
+goal: group basketball players into similar clusters according to their playing styles(pg,sg,sf,pf,c)
+where the data is from the basketball-reference.com website, 2000/2001 to 2015/2016 NBA season except 2011/2012(boycott)
+five man analysis condition: played together at least 21 matches for 240 total min(565 five men lineup for 15 seasons found)
+6040 observations for 72 variables(joined tables on player's name, season, and team name)
