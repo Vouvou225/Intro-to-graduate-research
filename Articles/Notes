@@ -10,3 +10,8 @@ advanced statistics yielded more efficient results by reducing playing times and
 shooting statistics were selected for a detailed analysis of the offensive characters of the players
 To examine the style of players, we focused on the shooting distance of the field goal attepmts
 the number of clusters were unknown in advance. It was performed with a minimum of 4 clusters and a maximum of 10 groups for each position. They used Internal Validity Indices to determine the optimal number of clusters.
+cluster analysis for PG: "Ball Handler"(high usage and assist); "Floor General"(high assist,efficiency,steals,dribbling); "Shooter"(high shooting 3s, low free throw); "Role Player"(complimentary to the team)
+Cluster analysis for SG position: "Shooter"(high 3s%,high true shooting%,low free throw); "Warrior"(high block and offensive rebound); "Role Player"; "Team Leader"(high usage,high PER)
+Cluster analysis for SF position: "Team Leader"(high usage and high PER); "Shooter"(high 3s%,high true shooting, low FT%); "Warrior";"Role Player".
+Cluster analysis for PF position: "Shooter:; "Big Man"(PER,DRB), "Role Player"; "Team Leader", "Warrior"
+Cluster analysis for C position: "Warrior"; "Shooter"; "Big Man"; "Team Leader"; "Rim Protector"(BLK,high TO); "Role Player"
