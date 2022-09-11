@@ -15,3 +15,5 @@ Cluster analysis for SG position: "Shooter"(high 3s%,high true shooting%,low fre
 Cluster analysis for SF position: "Team Leader"(high usage and high PER); "Shooter"(high 3s%,high true shooting, low FT%); "Warrior";"Role Player".
 Cluster analysis for PF position: "Shooter:; "Big Man"(PER,DRB), "Role Player"; "Team Leader", "Warrior"
 Cluster analysis for C position: "Warrior"; "Shooter"; "Big Man"; "Team Leader"; "Rim Protector"(BLK,high TO); "Role Player"
+metrics used: Adjusted plus-minus (APM), average points differential(APM), and the percentage of clusters on winning teams were analyzed while determining the prominent clusters.
+how players play with each other in basketball is a crucial factor for success
