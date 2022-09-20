@@ -1,1 +1,3 @@
+## Clustering performance in the European Basketball according to players’ characteristics and contextual variables
 
+This articles focuses on identifying differences in the game performance profiles of basketball players in Euroleague and European national championships; and to analyse the influence of player-related (e.g. age or court-position) and contextual variables (e.g. distance travelled or game break) in players’ game-related statistics. To do so, the article used two step cluster to identtify different performance player profiles and discriminant analysis to analyze differences within those playing profiles.
