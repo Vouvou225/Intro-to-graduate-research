@@ -3,5 +3,6 @@ Completed:
 - Second item
 
 To-do:
-- First item
-- Second item
+- Determine which articles UCO has access to 
+- Update full reference list
+- Continue writing summaries
