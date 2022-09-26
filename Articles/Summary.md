@@ -20,6 +20,17 @@ This articles focuses on identifying differences in the game performance profile
 
 This article focuses on re classifying the five traditional NBA positions into a new set of five roles based on players'charateristics. In other terms, The aim of this paper is to propose a new definition of the positions of basketball players by means of the analysis of their performance statistics with data mining and machine learning tools. The method was applied to NBA players of the 2010-11 NBA regular season. The parameters used in the analysis were points, rebounds, assists, steals, turnovers, fouls and blocks. The result was a set of 13 clusters, corresponding to 13 new positions unveiled in the analysis. The Analysis started by training the 8 players with the highest number of average minutes played per game, for each of the 30 teams. Then the classification procedure which followed three steps: definition of a 7-dimensional SOM trained with the Key Players Training Set; clusterization of the SOM output layer into a proper number of groups by means of a fuzzy clustering algorithm, to take into account the possible presence of players whose statistics’ values suggest a hybrid position; analysis of the clusters’ profiles to detect heterogeneities that allow to define more refined positions within the clusters, resorting to basketball technical considerations.
 
+
+
+
+
+
+
+
+
+
+
+
 ## A cluster analysis of basketball players for each of the five traditionally defined positions
 
 - goal: group basketball players into similar clusters according to their playing styles(pg,sg,sf,pf,c)
