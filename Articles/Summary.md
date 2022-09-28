@@ -56,13 +56,14 @@ This article focuses on re classifying the five traditional NBA positions into a
 ## Similarities
 - around same number of variables
 - data comes from one regular season
-- specific criteria to meet before being considered into final dataset
+- almost same type of variables
 - exploring data within different clusters to see how it behave
+- narrow down dataset based on criteria
 
 
 
 ## Differences
- -  descriptive design VS positive player performance (to come up with final dataset)
- -  two step cluster vs validation methods (for clustering)
+ -  specific criteria to be considered to be included in dataset
+ -  techniques to analyze final dataset
 
 
