@@ -1,10 +1,10 @@
 Completed:
-- First item
-- Second item
+- Update reference list
 
 To-do:
-- Determine which articles UCO has access to 
-- Update full reference list
 - Continue writing summaries
+- Figure out how Baksetball Reference determines "non-qualified" for rate stats.  Is this a NBA rule or a site-specific rule?
 - 2018-2019 per game stats
-    - Level 2?
+    - Keep TOT row, delete others for players on multiple teams
+    - Remove players without enough games*
+    - Cluster using chosen variables
