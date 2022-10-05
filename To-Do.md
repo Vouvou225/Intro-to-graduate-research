@@ -6,5 +6,5 @@ Completed:
 To-do:
 - Historical vs. modern
 - Continue writing summaries
-- Use NbClust for gap statistic and clustering
+- Use NbClust for gap statistic and clustering (standardize?)
 - Add more years
