@@ -4,7 +4,7 @@ Completed:
 - Clustered 2018-2019 season
 
 To-do:
+- Historical vs. modern
 - Continue writing summaries
 - Use NbClust for gap statistic and clustering
 - Add more years
-
