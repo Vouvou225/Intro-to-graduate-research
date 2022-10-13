@@ -1,0 +1,154 @@
+---
+title: "research project"
+output: pdf_document
+date: "2022-09-29"
+---
+
+```{r}
+install.packages("tidyverse")
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("knitr")
+install.packages("NbClust")
+install.packages("cluster")
+
+
+library("tidyverse")
+library("dplyr")
+library("tidyr")
+library("knitr")
+library("NbClust")
+library("cluster")
+
+```
+# Dataset
+
+I will start by filtering my dataset to see the duplicate values. I see that some players played for different teams and have a row where they have their total statistics. I will keep their total row and remove the one from different teams. To come up with my final dataset, I will create some criteria such as played at least 30% of games ; played less than 3 minutes a game excluded. I will proceed to rename the columns to have a better understanding.
+
+```{r}
+Nba_Seasons <- read.csv("nba_seasons.csv", header = TRUE, sep = ",")
+
+
+# filter the player that appears more than 1
+Nba_Seasons %>% group_by(Player) %>% filter(n()>1)%>%filter(Tm=="TOT")
+
+# keep TOT row only
+Nba_Seasons <- Nba_Seasons %>% 
+  distinct(Player, .keep_all = TRUE)
+
+#criteria: played at least 30% of games ; played less than 3 minutes a game excluded
+
+Nba_Seasons <- Nba_Seasons %>% filter(G>25 & MP>3)
+
+
+# Rename multiple columns
+Nba_Seasons <- Nba_Seasons %>%rename("FG%" ="FG.", "3P"="X3P","3PA"="X3PA","3P%"="X3P.", "2P"="X2P", "2PA"="X2PA","2P%"="X2P.","eFG%"="eFG.", "FT%"= "FT.")
+
+#checking for NA values
+NA_Check <- is.na(Nba_Seasons)
+summary(NA_Check)
+
+```
+
+
+# Classic(79-1994) VS Transitional(1995-2013) VS Modern era(2013-now)
+
+Classic(79-94): arrival of greatness such as Magic and Bird.Other stars such as Kareem, Malone, Jordan... The game was very fun to watch. The game started to fade around 93, a lot of stars got hurt and other died. 
+
+Transitional(95-2013):At the beginning of the era, Kobe got drafted and a lot of international stars started showing up such as Dirk. A lot of individual talented players such as LeBron, Duncan, Shaq, Kobe, Durant, Curry, Harden were in either their early or late prime years(~24-30 years old). We had the beginning of "super teams".
+
+Modern era(2013-now): We are living this era with our own eyes, young talented players are shooting threes from half court. Players with extremely good handles which makes them difficult to guard. When we thought Celtics and Heat were Huge in the previous era, now it becomes normal looking at Lakers, the Nets, GSW, Rockets, Clippers...
+
+
+```{r}
+Classic <- Nba_Seasons[Nba_Seasons$Year >= "1979-1980" & Nba_Seasons$Year <= "1993-1994",]
+
+Transitional <- Nba_Seasons[Nba_Seasons$Year >= "1995-1996" & Nba_Seasons$Year <= "2012-2013",]
+
+Modern <- Nba_Seasons[Nba_Seasons$Year >= "2013-2014" & Nba_Seasons$Year <= "2018-2019",]
+
+
+
+```
+
+# Variables
+
+ I would like to focus on the attempted statistics because it shows the style or type of player without necessarily considering how effective the player is. Also since I am trying to assign "new position" to the players, I will exclude their traditional position to avoid being bias. I will also exclude other variables which will not help me achieve my goal. I will focus on the following variables: 2PA,3PA,FTA,ORB,DRB,AST,STL,BLK,TOV,PF,PTS.
+
+```{r}
+
+Nba_Seasons <- Nba_Seasons[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
+Classic <- Classic[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
+Transitional <- Transitional[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
+Modern <- Modern[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
+
+
+
+ 
+```
+
+# Determining number of clusters
+
+## Challenges
+
+gap statistic does not give the exact number of clusters and which observations belong to which clusters so let us switch to another package. The next step is to try NbClust. At the first try, NbClust gave me the number of clusters but I was not satisfied with their results. I am asking myself why they found a low number of clusters for the different era comparing to the articles I have read. Is it because I have considered several years compared to one or two years in the articles? Should I change the minimum number of clusters allowed to foce NbClust to give me more clusters? Should I change my criteria to be more selective ? Should I consider more variables?Or should i just focus on less years, if so how to choose those years without being bias? Those are the questions I will try to answer.
+
+## Using NbClust for gap statistic and clustering
+
+NbClust package provides 30 indices for determining the number of clusters and proposes to user
+the best clustering scheme from the different results obtained by varying all combinations of number
+of clusters, distance measures, and clustering methods.
+
+
+
+```{r}
+
+NbClust(scale(Classic), distance = "euclidean", min.nc = 2, max.nc = 15,method = "kmeans", index = "all")
+
+NbClust(scale(Transitional), distance = "euclidean", min.nc = 2, max.nc = 15,method = "kmeans", index = "all")
+
+NbClust(scale(Modern), distance = "euclidean", min.nc = 2, max.nc = 15,method = "kmeans", index = "all")
+
+#try all the variables and leave out categorical variables and see if it gives more than 2.
+#try the nba minimum requirements to be leaders (filter criteria by that) and run the nbclust to see if we have more clusters
+#try one year and do the cluster for each category(find information how to pick each year,find justification why you chose that specific year for each category)
+#if you cannot find justification, pick random year for each category
+#upload the code on github
+
+
+
+```
+
+In the Classic era, the best number of clusters is  2 .
+In the Transitional era, the best number of clusters is  3 .
+In the Modern era, the best number of clusters is  2 . 
+
+```{r}
+
+
+#try one year and do the cluster for each category(find information how to pick each year,find justification why you chose that specific year for each category)
+#if you cannot find justification, pick random year for each category
+
+year_1 <- Nba_Seasons[Nba_Seasons$Year >= "1983-1984" & Nba_Seasons$Year >= "1985-1986"  ,] #the epic Boston-Los Angeles championship confrontation has been one of the NBA's signature moments and its greatest rivalry. Also one of the best NBA Finals
+year_2 <- Nba_Seasons[Nba_Seasons$Year <= "2012-2013" & Nba_Seasons$Year >= "2010-2011" ,] #heat vs spurs rivalry as one of the greates nba finals
+year_3 <- Nba_Seasons[Nba_Seasons$Year >= "2015-2016" & Nba_Seasons$Year <= "2017-2018",] #one of the greatest finals:cavs vs gsw
+
+
+year_1 <- year_1[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
+year_2 <- year_2[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
+year_3 <- year_3[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
+
+
+year_1 <- year_1[,-c(1,2,3,4,6,8,15,18,19,22,32)]
+year_2 <- year_2[,-c(1,2,3,4,6,8,15,18,19,22,32)]
+year_3 <- year_3[,-c(1,2,3,4,6,8,15,18,19,22,32)]
+
+
+
+NbClust(scale(year_1), distance = "euclidean", min.nc = 2, max.nc = 15,method = "kmeans", index = "all")
+NbClust(scale(year_2), distance = "euclidean", min.nc = 2, max.nc = 15,method = "kmeans", index = "all")
+NbClust(scale(year_3), distance = "euclidean", min.nc = 2, max.nc = 15,method = "kmeans", index = "all")
+ 
+```
+
+
