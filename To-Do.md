@@ -10,4 +10,5 @@ To-do:
 - Try to replicate results from "A cluster analysis of basketball players for each of the five traditionally defined positions"
 - Set minimum number of clusters to 5
 - Create a "results" output for presentation
+- Work on slides and abstract
 - Continue writing summaries
