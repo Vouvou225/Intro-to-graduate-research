@@ -28,25 +28,78 @@ I will start by filtering my dataset to see the duplicate values. I see that som
 ```{r}
 Nba_Seasons <- read.csv("nba_seasons.csv", header = TRUE, sep = ",")
 
-
 # filter the player that appears more than 1
-Nba_Seasons %>% group_by(Player) %>% filter(n()>1)%>%filter(Tm=="TOT")
+(Nba_Seasons %>% group_by(duplicated(Nba_Seasons$Player)) %>% filter(n()>1)%>%filter(Tm=="TOT"))
 
 # keep TOT row only
-Nba_Seasons <- Nba_Seasons %>% 
-  distinct(Player, .keep_all = TRUE)
+df1 <- Nba_Seasons %>% filter(Year ==('1979-1980')) %>% distinct(Player, .keep_all = TRUE)
+df2 <- Nba_Seasons %>% filter(Year ==('1980-1981')) %>% distinct(Player, .keep_all = TRUE) 
+df3 <-Nba_Seasons %>% filter(Year ==('1981-1982')) %>% distinct(Player, .keep_all = TRUE) 
+df4 <-Nba_Seasons %>% filter(Year ==('1982-1983')) %>% distinct(Player, .keep_all = TRUE) 
+df5 <-Nba_Seasons %>% filter(Year ==('1983-1984')) %>% distinct(Player, .keep_all = TRUE) 
+Nba_Seasons %>% filter(Year ==('1984-1985')) %>% distinct(Player, .keep_all = TRUE)
+df6 <-Nba_Seasons %>% filter(Year ==('1985-1986')) %>% distinct(Player, .keep_all = TRUE)
+df7 <-Nba_Seasons %>% filter(Year ==('1986-1987')) %>% distinct(Player, .keep_all = TRUE)
+df8 <-Nba_Seasons %>% filter(Year ==('1987-1988')) %>% distinct(Player, .keep_all = TRUE)
+df9 <-Nba_Seasons %>% filter(Year ==('1988-1989')) %>% distinct(Player, .keep_all = TRUE)
+df10 <-Nba_Seasons %>% filter(Year ==('1989-1990')) %>% distinct(Player, .keep_all = TRUE)
+df11 <-Nba_Seasons %>% filter(Year ==('1990-1991')) %>% distinct(Player, .keep_all = TRUE)
+df12 <-Nba_Seasons %>% filter(Year ==('1991-1992')) %>% distinct(Player, .keep_all = TRUE)
+df13 <-Nba_Seasons %>% filter(Year ==('1992-1993')) %>% distinct(Player, .keep_all = TRUE)
+df14 <-Nba_Seasons %>% filter(Year ==('1993-1994')) %>% distinct(Player, .keep_all = TRUE)
+df15 <-Nba_Seasons %>% filter(Year ==('1998-1999')) %>% distinct(Player, .keep_all = TRUE)
+df16 <-Nba_Seasons %>% filter(Year ==('1999-2000')) %>% distinct(Player, .keep_all = TRUE)
+df17 <-Nba_Seasons %>% filter(Year ==('2000-2001')) %>% distinct(Player, .keep_all = TRUE)
+df18 <-Nba_Seasons %>% filter(Year ==('2001-2002')) %>% distinct(Player, .keep_all = TRUE)
+df19 <-Nba_Seasons %>% filter(Year ==('2002-2003')) %>% distinct(Player, .keep_all = TRUE)
+df20 <-Nba_Seasons %>% filter(Year ==('2003-2004')) %>% distinct(Player, .keep_all = TRUE)
+df21 <-Nba_Seasons %>% filter(Year ==('2004-2005')) %>% distinct(Player, .keep_all = TRUE)
+df22 <-Nba_Seasons %>% filter(Year ==('2005-2006')) %>% distinct(Player, .keep_all = TRUE)
+df23 <-Nba_Seasons %>% filter(Year ==('2006-2007')) %>% distinct(Player, .keep_all = TRUE)
+df24 <-Nba_Seasons %>% filter(Year ==('2007-2008')) %>% distinct(Player, .keep_all = TRUE)
+df25 <-Nba_Seasons %>% filter(Year ==('2008-2009')) %>% distinct(Player, .keep_all = TRUE)
+df26 <-Nba_Seasons %>% filter(Year ==('2009-2010')) %>% distinct(Player, .keep_all = TRUE)
+df27 <-Nba_Seasons %>% filter(Year ==('2010-2011')) %>% distinct(Player, .keep_all = TRUE)
+df28 <-Nba_Seasons %>% filter(Year ==('2011-2012')) %>% distinct(Player, .keep_all = TRUE)
+df29 <-Nba_Seasons %>% filter(Year ==('2012-2013')) %>% distinct(Player, .keep_all = TRUE)
+df30 <-Nba_Seasons %>% filter(Year ==('2013-2014')) %>% distinct(Player, .keep_all = TRUE)
+df31 <-Nba_Seasons %>% filter(Year ==('2014-2015')) %>% distinct(Player, .keep_all = TRUE)
+df32 <-Nba_Seasons %>% filter(Year ==('2015-2016')) %>% distinct(Player, .keep_all = TRUE)
+df33 <-Nba_Seasons %>% filter(Year ==('2016-2017')) %>% distinct(Player, .keep_all = TRUE)
+df34 <-Nba_Seasons %>% filter(Year ==('2017-2018')) %>% distinct(Player, .keep_all = TRUE)
+df35 <-Nba_Seasons %>% filter(Year ==('2018-2019')) %>% distinct(Player, .keep_all = TRUE)
+df36 <-Nba_Seasons %>% filter(Year ==('2001-2002')) %>% distinct(Player, .keep_all = TRUE)
 
-#criteria: played at least 30% of games ; played less than 3 minutes a game excluded
+New_Data <- rbind(df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12,df13,df14,df15,df16,df17,df18,df19,df20,df21,df22,df23,df24,df25,df26,df27,df28,df29,df30,df31,df32,df33,df34,df35,df36)
 
-Nba_Seasons <- Nba_Seasons %>% filter(G>25 & MP>3)
+
+                
+                        
+which(Nba_Seasons$Player == "Mike Bantom")                      
+which(New_Data$Player == "Mike Bantom")
+
+
+
+
+#criteria: STATISTICAL MINIMUMS TO QUALIFY FOR NBA LEAGUE LEADERS 
+
+New_Data <- New_Data %>% filter(G>50 & MP>19 )
+mean(Classic$MP)  
+mean(Transitional$MP)
+mean(Modern$MP)
+                           
+#mean(Classic$STL)
+#mean(Transitional$FT)
+#mean(Modern$FT)
 
 
 # Rename multiple columns
-Nba_Seasons <- Nba_Seasons %>%rename("FG%" ="FG.", "3P"="X3P","3PA"="X3PA","3P%"="X3P.", "2P"="X2P", "2PA"="X2PA","2P%"="X2P.","eFG%"="eFG.", "FT%"= "FT.")
+New_Data <- New_Data %>%rename("FG%" ="FG.", "3P"="X3P","3PA"="X3PA","3P%"="X3P.", "2P"="X2P", "2PA"="X2PA","2P%"="X2P.","eFG%"="eFG.", "FT%"= "FT.")
+
 
 #checking for NA values
-NA_Check <- is.na(Nba_Seasons)
-summary(NA_Check)
+#NA_Check <- is.na(Nba_Seasons)
+#summary(NA_Check)
 
 ```
 
@@ -61,11 +114,11 @@ Modern era(2013-now): We are living this era with our own eyes, young talented p
 
 
 ```{r}
-Classic <- Nba_Seasons[Nba_Seasons$Year >= "1979-1980" & Nba_Seasons$Year <= "1993-1994",]
+Classic <- New_Data[New_Data$Year >= "1979-1980" & New_Data$Year <= "1993-1994",]
 
-Transitional <- Nba_Seasons[Nba_Seasons$Year >= "1995-1996" & Nba_Seasons$Year <= "2012-2013",]
+Transitional <- New_Data[New_Data$Year >= "1995-1996" & New_Data$Year <= "2012-2013",]
 
-Modern <- Nba_Seasons[Nba_Seasons$Year >= "2013-2014" & Nba_Seasons$Year <= "2018-2019",]
+Modern <- New_Data[New_Data$Year >= "2013-2014" & New_Data$Year <= "2018-2019",]
 
 
 
@@ -76,11 +129,10 @@ Modern <- Nba_Seasons[Nba_Seasons$Year >= "2013-2014" & Nba_Seasons$Year <= "201
  I would like to focus on the attempted statistics because it shows the style or type of player without necessarily considering how effective the player is. Also since I am trying to assign "new position" to the players, I will exclude their traditional position to avoid being bias. I will also exclude other variables which will not help me achieve my goal. I will focus on the following variables: 2PA,3PA,FTA,ORB,DRB,AST,STL,BLK,TOV,PF,PTS.
 
 ```{r}
-
-Nba_Seasons <- Nba_Seasons[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
-Classic <- Classic[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
-Transitional <- Transitional[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
-Modern <- Modern[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
+New_Data <- New_Data[,-c(1,2,3,4,5,6,7,8,9,10,12,13,15,16,18,19,20,22,25,32)]
+Classic <- Classic[,-c(1,2,3,4,5,6,7,8,9,10,12,13,15,16,18,19,20,22,25,32)]
+Transitional <- Transitional[,-c(1,2,3,4,5,6,7,8,9,10,12,13,15,16,18,19,20,22,25,32)]
+Modern <- Modern[,-c(1,2,3,4,5,6,7,8,9,10,12,13,15,16,18,19,20,22,25,32)]
 
 
 
@@ -91,7 +143,7 @@ Modern <- Modern[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
 
 ## Challenges
 
-gap statistic does not give the exact number of clusters and which observations belong to which clusters so let us switch to another package. The next step is to try NbClust. At the first try, NbClust gave me the number of clusters but I was not satisfied with their results. I am asking myself why they found a low number of clusters for the different era comparing to the articles I have read. Is it because I have considered several years compared to one or two years in the articles? Should I change the minimum number of clusters allowed to foce NbClust to give me more clusters? Should I change my criteria to be more selective ? Should I consider more variables?Or should i just focus on less years, if so how to choose those years without being bias? Those are the questions I will try to answer.
+gap statistic does not give the exact number of clusters and which observations belong to which clusters so let us switch to another package. The next step is to try NbClust. At the first try, NbClust gave me the number of clusters but I was not satisfied with their results. I am asking myself why they found a low number of clusters for the different era comparing to the articles I have read. Is it because I have considered several years compared to one or two years in the articles? Should I change the minimum number of clusters allowed to force NbClust to give me more clusters? Should I change my criteria to be more selective ? Should I consider more variables?Or should i just focus on less years, if so how to choose those years without being bias? Those are the questions I will try to answer.
 
 ## Using NbClust for gap statistic and clustering
 
@@ -109,46 +161,11 @@ NbClust(scale(Transitional), distance = "euclidean", min.nc = 2, max.nc = 15,met
 
 NbClust(scale(Modern), distance = "euclidean", min.nc = 2, max.nc = 15,method = "kmeans", index = "all")
 
-#try all the variables and leave out categorical variables and see if it gives more than 2.
-#try the nba minimum requirements to be leaders (filter criteria by that) and run the nbclust to see if we have more clusters
-#try one year and do the cluster for each category(find information how to pick each year,find justification why you chose that specific year for each category)
-#if you cannot find justification, pick random year for each category
-#upload the code on github
 
 
 
 ```
 
-In the Classic era, the best number of clusters is  2 .
+In the Classic era, the best number of clusters is  3 .
 In the Transitional era, the best number of clusters is  3 .
 In the Modern era, the best number of clusters is  2 . 
-
-```{r}
-
-
-#try one year and do the cluster for each category(find information how to pick each year,find justification why you chose that specific year for each category)
-#if you cannot find justification, pick random year for each category
-
-year_1 <- Nba_Seasons[Nba_Seasons$Year >= "1983-1984" & Nba_Seasons$Year >= "1985-1986"  ,] #the epic Boston-Los Angeles championship confrontation has been one of the NBA's signature moments and its greatest rivalry. Also one of the best NBA Finals
-year_2 <- Nba_Seasons[Nba_Seasons$Year <= "2012-2013" & Nba_Seasons$Year >= "2010-2011" ,] #heat vs spurs rivalry as one of the greates nba finals
-year_3 <- Nba_Seasons[Nba_Seasons$Year >= "2015-2016" & Nba_Seasons$Year <= "2017-2018",] #one of the greatest finals:cavs vs gsw
-
-
-year_1 <- year_1[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
-year_2 <- year_2[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
-year_3 <- year_3[,-c(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,20,22,25,32)]
-
-
-year_1 <- year_1[,-c(1,2,3,4,6,8,15,18,19,22,32)]
-year_2 <- year_2[,-c(1,2,3,4,6,8,15,18,19,22,32)]
-year_3 <- year_3[,-c(1,2,3,4,6,8,15,18,19,22,32)]
-
-
-
-NbClust(scale(year_1), distance = "euclidean", min.nc = 2, max.nc = 15,method = "kmeans", index = "all")
-NbClust(scale(year_2), distance = "euclidean", min.nc = 2, max.nc = 15,method = "kmeans", index = "all")
-NbClust(scale(year_3), distance = "euclidean", min.nc = 2, max.nc = 15,method = "kmeans", index = "all")
- 
-```
-
-
